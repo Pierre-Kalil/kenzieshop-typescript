@@ -4,25 +4,27 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import * as yup from "yup";
 import { useAuth } from "../../Providers/Auth";
-import { Container } from "./styles";
+import { Container } from "../Login/styles";
 import { Link } from "react-router-dom";
 
-export interface IForm {
+export interface IRegister {
   username: string;
   password: string;
+  email: string;
 }
 
-const Login = () => {
-  const { signIn } = useAuth();
+const Register = () => {
+  const { loggedIn } = useAuth();
 
   const [error, setError] = useState<boolean>(false);
 
   const schema = yup.object().shape({
-    email: yup.string().email("Email inválido").required("Campo obrigatório"),
+    username: yup.string().required("Campo Obrigatório"),
     password: yup
       .string()
       .min(4, "Mínimo de 6 dígitos")
       .required("Campo obrigatório"),
+    email: yup.string().email("Email inválido").required("Campo obrigatório"),
   });
 
   const {
@@ -33,12 +35,24 @@ const Login = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: IForm) => signIn(data, setError);
-  //signIn
+  const onSubmit = (data: IRegister) => loggedIn(data, setError);
 
   return (
     <Container>
       <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <TextField
+            margin="normal"
+            variant="outlined"
+            label="username"
+            name="username"
+            size="small"
+            color="primary"
+            inputProps={register("username")}
+            error={!!errors.username}
+            helperText={errors.username?.message}
+          ></TextField>
+        </div>
         <div>
           <TextField
             margin="normal"
@@ -67,7 +81,7 @@ const Login = () => {
           ></TextField>
         </div>
         <p>
-          Não possui uma conta? <Link to="/register">Cadastre-se</Link>
+          Já possui uma conta? <Link to="/login">Login</Link>
         </p>
         <Button type="submit" variant="contained" color="primary" size="large">
           Enviar
@@ -78,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

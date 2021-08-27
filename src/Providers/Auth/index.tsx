@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { IForm } from "../../pages/Login";
+import { IRegister } from "../../pages/Register";
 
 interface IAuthProviderProps {
   children: ReactNode;
@@ -19,6 +20,10 @@ interface IAuthProviderData {
   token: string;
   signIn: (
     userData: IForm,
+    setError?: Dispatch<SetStateAction<boolean>>
+  ) => void;
+  loggedIn: (
+    userData: IRegister,
     setError?: Dispatch<SetStateAction<boolean>>
   ) => void;
 }
@@ -45,8 +50,19 @@ export const AuthProvider = ({ children }: IAuthProviderProps) => {
       .catch((err) => console.log(err));
   };
 
+  const loggedIn = (
+    userData: IRegister,
+    setError?: Dispatch<SetStateAction<boolean>>
+  ) => {
+    axios
+      .post("https://kenzieshop2.herokuapp.com/register", userData)
+      .then((response) => response.data.register)
+      .catch((err) => console.log(err));
+    history.push("/login");
+  };
+
   return (
-    <AuthContext.Provider value={{ token: auth, signIn }}>
+    <AuthContext.Provider value={{ token: auth, signIn, loggedIn }}>
       {children}
     </AuthContext.Provider>
   );

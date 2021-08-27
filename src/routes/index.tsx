@@ -3,6 +3,7 @@ import Login from "../pages/Login";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import Cart from "../pages/Cart";
+import Register from "../pages/Register";
 
 const Routes = () => {
   // const history = useHistory();
@@ -11,6 +12,9 @@ const Routes = () => {
     <Switch>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route path="/register">
+        <Register />
       </Route>
       <Route path="/login">
         <Login />

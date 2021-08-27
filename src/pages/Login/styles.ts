@@ -5,4 +5,13 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  button {
+    width: 100%;
+  }
 `;
