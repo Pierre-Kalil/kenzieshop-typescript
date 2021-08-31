@@ -31,7 +31,7 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IRegister>({
     resolver: yupResolver(schema),
   });
 

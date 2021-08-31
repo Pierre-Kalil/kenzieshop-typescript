@@ -8,7 +8,7 @@ import { Container } from "./styles";
 import { Link } from "react-router-dom";
 
 export interface IForm {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -29,7 +29,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<IForm>({
     resolver: yupResolver(schema),
   });
 
