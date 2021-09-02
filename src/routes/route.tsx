@@ -1,6 +1,7 @@
 // import { Dispatch, SetStateAction } from "react";
 import { Redirect, Route as ReactDOMRoute } from "react-router-dom";
 import { useAuth } from "../Providers/Auth";
+import { ComponentType } from "react";
 // Se a rota for privada e o usuário não ta logado, ele vai pro login
 // Se a rota for privada e o usuário logado, ele vai pra rota
 // Se a rota não for privada e o usuário estiver logado, ele não precisa ver
@@ -12,7 +13,7 @@ import { useAuth } from "../Providers/Auth";
 // false e false = ok
 
 interface Icomponent {
-  component: any;
+  component: ComponentType;
   isPrivate?: boolean;
 }
 
