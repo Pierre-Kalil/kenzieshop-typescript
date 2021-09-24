@@ -15,4 +15,10 @@ export const NavLink = styled(Link)`
   span {
     margin-left: 5px;
   }
+
+  @media (max-width: 768px) {
+    .hidden {
+      display: none;
+    }
+  }
 `;

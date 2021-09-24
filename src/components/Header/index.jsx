@@ -62,7 +62,7 @@ export default function PrimarySearchAppBar() {
             <Badge badgeContent={cart.length} color="primary">
               <FiShoppingCart size={20} />
             </Badge>
-            <span> Carrinho </span>
+            <span className="hidden"> Carrinho </span>
           </NavLink>
 
           {!token && (
